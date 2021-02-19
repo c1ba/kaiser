@@ -38,7 +38,19 @@ function getCenter(element) {
 
 const arrow = document.querySelector("#kaiser");
 const arrowCenter = getCenter(arrow);
+let a=0;
+
+if(window.innerWidth <= 660){
+    setInterval(function(){
+        if(a >= 360) a=0;
+        let t = a * (Math.PI / 180);
+        arrow.style.transform = `rotate(${t}rad)`;
+        a+=1;
+    },15);
+}
+else{
 addEventListener("mousemove", ({clientX, clientY}) => {
     const angle = Math.atan2(clientY - arrowCenter.y, clientX - arrowCenter.x);
     arrow.style.transform = `rotate(${angle}rad)`;
 });
+}
